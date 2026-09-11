@@ -46,7 +46,8 @@ z addons.mozilla.org.)
 | **Skrýt lidi bez hodnocení** | Účet, kterému zatím nikdo nic nepotvrdil. |
 | **Ztlumení autoři** | U každé zprávy přibude tlačítko *ztlumit*, které autora doplní do seznamu. |
 
-Sledovaná a ztlumená slova platí na obojí. Hledá se kus textu, bez ohledu na
+Kromě přepínačů výš jdou nastavit vlastní slova: sledovaná projdou vždycky,
+ztlumená zmizí. Platí na výpis i na chat. Hledá se kus textu, bez ohledu na
 diakritiku a velikost písmen. Řádek mezi lomítky je regulární výraz:
 
 ```
@@ -55,8 +56,8 @@ diakritiku a velikost písmen. Řádek mezi lomítky je regulární výraz:
 /prod[áa]m .{0,20}domén/                   prodám něco domén
 ```
 
-Diakritika ve vzoru je v pořádku, sundá se stejně jako v hledaném textu. Vzor,
-který nejde přeložit, se tiše přeskočí, takže překlep filtr nerozbije.
+Diakritika ve vzoru je v pořádku, sundá se stejně jako v hledaném textu. Když
+takovému zápisu nejde rozumět, tiše se přeskočí, takže překlep filtr nerozbije.
 
 ## Jak to rozhoduje
 
@@ -114,7 +115,7 @@ refresh-fixtures.py   aktualizace fixtures.json
 
 ## Kde má hranice
 
-* Řeší jen úvodní stránku, ne archivy `/prodeje/…`.
+* Řeší jen úvodní stránku. Archivy `/prodeje/…` nechává být.
 * Ve výpisu filtruje podle titulku a URL. Cenu ani autora řádek tabulky
   neobsahuje, takže „skrýt pod 5 000 Kč“ by znamenalo stahovat každý inzerát.
   V chatu autor k dispozici je, proto je ztlumení autorů jen tam.
@@ -123,8 +124,9 @@ refresh-fixtures.py   aktualizace fixtures.json
 * Chatových zpráv je na měření málo. Když narazíš na zprávu, kterou filtr
   posoudí špatně, přidej ji do `chat-fixtures.json` se štítkem a spusť `node eval.js`.
   **Jména autorů, e-maily a adresy webů nahraď zástupnými** (`autor-01`,
-  `jmeno@example.com`, `example.cz`), jako je tam mají ostatní. Pravidla čtou tvar
-  textu, ne konkrétní jméno, takže se tím o nic nepřijde. Chat psali skuteční lidé
+  `jmeno@example.com`, `example.cz`), jako je tam mají ostatní. Měřená pravidla čtou
+  tvar textu, takže zástupná jména na výsledku nic nezmění. Ztlumení autoři na
+  jméně stojí, ale ti se v měření nepoužívají. Chat psali skuteční lidé
   a do repozitáře jejich kontakty nepatří.
 
 ## Licence
