@@ -1,0 +1,369 @@
+{
+ "_source": "webtrh.cz chat na úvodní stránce, 40 zpráv staženo 2026-09-11. Jména autorů, e-maily a adresy webů jsou nahrazené zástupnými. Pravidla čtou tvar textu, ne konkrétní jméno, takže měření platí dál.",
+ "_labels": {
+  "trade": "pisatel sám nabízí nebo shání doménu",
+  "address": "zpráva obsahuje adresu webu nebo e-mail"
+ },
+ "messages": [
+  {
+   "id": "318",
+   "author": "autor-13",
+   "rating": 57,
+   "hasLink": true,
+   "text": "https://example.cz/8-x-eu-domena-za-2000-kc/",
+   "trade": true,
+   "address": true
+  },
+  {
+   "id": "317",
+   "author": "autor-11",
+   "rating": 1,
+   "hasLink": false,
+   "text": "Doménový král mi napsal jestli si chci tu doménu opravdu koupit 😀",
+   "trade": false,
+   "address": false
+  },
+  {
+   "id": "316",
+   "author": "autor-10",
+   "rating": 0,
+   "hasLink": true,
+   "text": "https://webtrh.cz/nabidka/wordpress-vyvojar-vlastni-pluginy-weby-react-a-strapi/",
+   "trade": false,
+   "address": true
+  },
+  {
+   "id": "315",
+   "author": "autor-11",
+   "rating": 1,
+   "hasLink": false,
+   "text": "example.cz za 100k koupím hned top nabídka",
+   "trade": true,
+   "address": true
+  },
+  {
+   "id": "314",
+   "author": "autor-12",
+   "rating": 19,
+   "hasLink": false,
+   "text": "kdo by nechtěl takovu ROYAL (kategorie) doménu \"example.cz\". Prostě epes rádes eňo uňo TOP NOTCH.",
+   "trade": false,
+   "address": true
+  },
+  {
+   "id": "313",
+   "author": "autor-04",
+   "rating": 35,
+   "hasLink": false,
+   "text": "Jsem se šel podívat na ten váš web s doménama 🙂 máte tam nějakou chybu, u každé domény máte o 2-3 nuly více než je jejich hodnota. Jestli chcete, napište, opravím vám to 🙂",
+   "trade": false,
+   "address": false
+  },
+  {
+   "id": "312",
+   "author": "autor-11",
+   "rating": 1,
+   "hasLink": false,
+   "text": "Nikdo si to nekoupil tak to zkusím jinak.. 😀",
+   "trade": false,
+   "address": false
+  },
+  {
+   "id": "311",
+   "author": "autor-03",
+   "rating": 1,
+   "hasLink": false,
+   "text": "V portfoliu máme cca 1 400 .CZ domén a říkám si, že některým by víc slušel společný projekt než samotný prodej. Je tu někdo, kdo hledá zajímavou doménu jako základ projektu a uměl by přidat vývoj, know-how, obchod nebo třeba distribuci? Klidně napište do SZ, třeba najdeme zajímavý průnik a vymyslíme něco společně.",
+   "trade": true,
+   "address": false
+  },
+  {
+   "id": "310",
+   "author": "autor-10",
+   "rating": 0,
+   "hasLink": true,
+   "text": "https://webtrh.cz/nabidka/wordpress-weby-a-pluginy-na-miru-frontend-z-figmy-strapi-a-next-js/",
+   "trade": false,
+   "address": true
+  },
+  {
+   "id": "309",
+   "author": "autor-15",
+   "rating": 64,
+   "hasLink": false,
+   "text": "*Mrkni + udělej edit na chat pls 🙂",
+   "trade": false,
+   "address": false
+  },
+  {
+   "id": "308",
+   "author": "autor-15",
+   "rating": 64,
+   "hasLink": true,
+   "text": "Mrknu ještě na tohle pls https://webtrh.cz/diskuse/lajky-akci-nelze-vratit-zpet/",
+   "trade": false,
+   "address": true
+  },
+  {
+   "id": "307",
+   "author": "autor-05",
+   "rating": 7,
+   "hasLink": false,
+   "text": "Opraveno 🙂 Kdyžtak zvýšíme kontrolu.",
+   "trade": false,
+   "address": false
+  },
+  {
+   "id": "306",
+   "author": "autor-15",
+   "rating": 64,
+   "hasLink": false,
+   "text": "Nene moderátoři vidí jen kvalitní obsah.",
+   "trade": false,
+   "address": false
+  },
+  {
+   "id": "305",
+   "author": "autor-12",
+   "rating": 19,
+   "hasLink": false,
+   "text": "ten THC shop dubai 😀 to nevidíš?",
+   "trade": false,
+   "address": false
+  },
+  {
+   "id": "304",
+   "author": "autor-15",
+   "rating": 64,
+   "hasLink": false,
+   "text": "Ty domény? 😅",
+   "trade": false,
+   "address": false
+  },
+  {
+   "id": "303",
+   "author": "autor-07",
+   "rating": 5,
+   "hasLink": false,
+   "text": "Ajaj, řádil tu nějaký spam bot 😢",
+   "trade": false,
+   "address": false
+  },
+  {
+   "id": "302",
+   "author": "autor-12",
+   "rating": 19,
+   "hasLink": false,
+   "text": "luxus spam 😀",
+   "trade": false,
+   "address": false
+  },
+  {
+   "id": "301",
+   "author": "autor-11",
+   "rating": 1,
+   "hasLink": false,
+   "text": "Joo od krále tak to chápu už",
+   "trade": false,
+   "address": false
+  },
+  {
+   "id": "300",
+   "author": "autor-15",
+   "rating": 64,
+   "hasLink": false,
+   "text": "Tomu nerozumíš, to jsou královské domény.",
+   "trade": false,
+   "address": false
+  },
+  {
+   "id": "299",
+   "author": "autor-11",
+   "rating": 1,
+   "hasLink": false,
+   "text": "Co to je ten spam prodeje úplně nesmyslnejch domén za 100K ?😀",
+   "trade": false,
+   "address": false
+  },
+  {
+   "id": "298",
+   "author": "autor-09",
+   "rating": 1,
+   "hasLink": false,
+   "text": "Hladam firmy a ľudí ktorých zaujíma smenny obchod barter viac na example.eu  zatiaľ presmer. Na vymennyobchod.example.sk",
+   "trade": false,
+   "address": true
+  },
+  {
+   "id": "297",
+   "author": "autor-07",
+   "rating": 5,
+   "hasLink": false,
+   "text": "Tady 🙋‍♂️",
+   "trade": false,
+   "address": false
+  },
+  {
+   "id": "296",
+   "author": "autor-15",
+   "rating": 64,
+   "hasLink": false,
+   "text": "Kde jsou ti, kteří si tady stěžovali na redakční a agregované poptávky? 😃",
+   "trade": false,
+   "address": false
+  },
+  {
+   "id": "295",
+   "author": "autor-14",
+   "rating": 85,
+   "hasLink": false,
+   "text": "Zdravím, zašlete mi více informací do zpráv nebo na email info@example.cz",
+   "trade": false,
+   "address": true
+  },
+  {
+   "id": "294",
+   "author": "autor-08",
+   "rating": 1,
+   "hasLink": false,
+   "text": "Zdravím všechny, bavilo by tu někoho klidně na hodinovku, za mě řešit zakázky, komunikovat s klienty? Kdyžtak dej vědět díky",
+   "trade": false,
+   "address": false
+  },
+  {
+   "id": "293",
+   "author": "autor-11",
+   "rating": 1,
+   "hasLink": false,
+   "text": "Zdravím zkusím to i tady třeba se mi poštěstí 😀 nevíte někdo o nějaké dobré účetní firmě?",
+   "trade": false,
+   "address": false
+  },
+  {
+   "id": "292",
+   "author": "autor-16",
+   "rating": 2,
+   "hasLink": false,
+   "text": "ai web no to se mas cim chlubit",
+   "trade": false,
+   "address": false
+  },
+  {
+   "id": "291",
+   "author": "autor-05",
+   "rating": 7,
+   "hasLink": false,
+   "text": "AI web není ostuda! Dnes se to už jinak stejně nedělá 🙂",
+   "trade": false,
+   "address": false
+  },
+  {
+   "id": "290",
+   "author": "autor-15",
+   "rating": 64,
+   "hasLink": false,
+   "text": "Někdo dělá AI weby, někdo prodává shit domény a další dělá zas něco jinýho. Však je to dobře, alespoň něco dělají 😏",
+   "trade": false,
+   "address": false
+  },
+  {
+   "id": "289",
+   "author": "autor-16",
+   "rating": 2,
+   "hasLink": false,
+   "text": "Proste pochop ze AI v rukou mladych lidi co nemeli predchozi tezce ziskane zkusenosti bude cesta do pekel. Stejne se zas vsichni jednou vratime k lopatam. Dlouho jsem nevolal novy ksefty, je vubec dneska jeste mozny sehnat klienta kdyz je kazdej hrozne chytrej s AI?",
+   "trade": false,
+   "address": false
+  },
+  {
+   "id": "288",
+   "author": "autor-12",
+   "rating": 19,
+   "hasLink": false,
+   "text": "kolego zásadní problém je ten, že toho nabízíš moc na to, že máš minimum zkušeností. Takže jedinej výsledek je AI. A pak je tedy jediná otázka – máš dost zkušeností na to tu AI udržet? Na webu nemáš IČO a podmínkách \"ceny bez DPH\". Web je typickej claude. Takže co je jinak oproti všem ostatním? Já třeba nabírám každej měsíc lidi na různý zakázky, ale já vlastně nevím kam tě zařadit. S AI umím líp, takže je snažší to předat sám. Grafiku nikde neukazuješ abych fakt viděl že si grafik a žádný automatizace popsaný nevidím. Ale technologií apod máš na webu plno. Tohle ber jako zpětnou vazbu – já fakt nevím, na co tě najmout když tam máš tohle všechno \"React, Vue, JavaScript, TypeScript, Node.js, PHP, Python, MySQL, PostgreSQL, MongoDB, Docker, Figma, Adobe CC, SEO\" ... dělal si někdy SEO analýzu pořádně? Fakt umíš s celým Adobe suite creative cloud? FAkt umíš v FE i BE tolik? Máš za sebou už víc než 10 různých docker nastavení a deploymenty na AWS/Azure nebo na VPS s nějakým panelem?",
+   "trade": false,
+   "address": false
+  },
+  {
+   "id": "287",
+   "author": "autor-02",
+   "rating": 1,
+   "hasLink": false,
+   "text": "Ahoj, kdyby tu někdo aktuálně hledal někoho na tvorbu nebo úpravu webu, e-shopu, programování, grafiku, automatizace nebo jinou digitální práci, mám teď volnou kapacitu.\n\nUkázky práce: example.dev\nV případě zájmu mi napište na jmeno@example.com a můžeme probrat konkrétní zadání a cenu. 🙂",
+   "trade": false,
+   "address": true
+  },
+  {
+   "id": "286",
+   "author": "autor-08",
+   "rating": 1,
+   "hasLink": false,
+   "text": "autor-06 Napsal jsem vám zprávu.",
+   "trade": false,
+   "address": false
+  },
+  {
+   "id": "285",
+   "author": "autor-01",
+   "rating": 4,
+   "hasLink": false,
+   "text": "rychlý, levný.. nejsi ai ?",
+   "trade": false,
+   "address": false
+  },
+  {
+   "id": "284",
+   "author": "autor-05",
+   "rating": 7,
+   "hasLink": false,
+   "text": "Opraveno",
+   "trade": false,
+   "address": false
+  },
+  {
+   "id": "282",
+   "author": "autor-06",
+   "rating": 2,
+   "hasLink": false,
+   "text": "Pánové, hledá někdo někoho pro psaní a publikování článků na svoje weby? Jsem levný, rychlý a mám nyní dost kapacity 🙂",
+   "trade": false,
+   "address": false
+  },
+  {
+   "id": "281",
+   "author": "autor-15",
+   "rating": 64,
+   "hasLink": false,
+   "text": "Za tím je tolik práce a námahy hele 😅",
+   "trade": false,
+   "address": false
+  },
+  {
+   "id": "280",
+   "author": "autor-12",
+   "rating": 19,
+   "hasLink": false,
+   "text": "Tvejch 5k už bych bral jako SPAM 😀",
+   "trade": false,
+   "address": false
+  },
+  {
+   "id": "279",
+   "author": "autor-15",
+   "rating": 64,
+   "hasLink": false,
+   "text": "1,8k je moc? 😅",
+   "trade": false,
+   "address": false
+  },
+  {
+   "id": "278",
+   "author": "autor-12",
+   "rating": 19,
+   "hasLink": false,
+   "text": "Takový to když potřebuješ smazat historii 😀 ale uvědomíš si, že si toho napsal fakt hodně 😀 konkrétně 1816 komentářů 😀",
+   "trade": false,
+   "address": false
+  }
+ ]
+}

@@ -1,0 +1,3 @@
+# Balíček pro Chrome Web Store se sestavuje, do repozitáře nepatří.
+*.zip
+node_modules/

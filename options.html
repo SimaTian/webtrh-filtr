@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<title>Webtrh filtr</title>
+<style>
+  /* Paleta i tvary jsou z webtrhu: odkazy #008fab, boxy 10px, Roboto. */
+  body {
+    max-width: 760px; margin: 0 auto; padding: 30px 20px 70px;
+    font: 15px/1.5 'Roboto', -apple-system, 'Segoe UI', Arial, sans-serif;
+    color: #333; background: #f4f6f7;
+  }
+  h1 { font-size: 21px; margin: 0 0 6px; }
+  h2 { font-size: 16px; margin: 0 0 4px; }
+  a { color: #008fab; }
+  a:hover { color: #1abbda; }
+  .box {
+    background: #fff; border: 1px solid #dedede; border-radius: 10px;
+    box-shadow: 2px 5px 5px 0 rgba(0,0,0,.05); padding: 18px 20px; margin: 0 0 16px;
+  }
+  .lead { margin: 0 0 18px; color: #6f6f6f; font-size: 13px; line-height: 1.45; }
+  .box .lead { margin: 4px 0 14px; }
+  label.row { display: block; margin: 10px 0; cursor: pointer; }
+  label.row input[type=checkbox] { margin-right: 8px; }
+  .hint { display: block; margin: 3px 0 0 24px; color: #8a8a8a; font-size: 13px; }
+  .sub { margin: 16px 0 6px; font-weight: 500; font-size: 14px; }
+  textarea, input[type=number] {
+    width: 100%; box-sizing: border-box; padding: 8px 10px;
+    border: 1px solid #d6d6d6; border-radius: 6px; background: #fff; color: #333;
+    font: 13px/1.5 'Roboto', monospace;
+  }
+  textarea:focus, input:focus { outline: 0; border-color: #008fab; }
+  .num { display: flex; gap: 20px; flex-wrap: wrap; margin: 12px 0 2px; }
+  .num label { font-size: 13px; color: #6f6f6f; }
+  .num input { width: 100px; margin-top: 4px; }
+  .actions { display: flex; gap: 12px; align-items: center; margin: 20px 0 26px; }
+  button {
+    padding: 9px 16px; border: 0; border-radius: 8px; cursor: pointer;
+    font: 14px/1 'Roboto', sans-serif; color: #fff;
+    background: linear-gradient(to right, #008fab 0%, #00d1da 100%);
+  }
+  button.plain { background: #fff; border: 1px solid #d6d6d6; color: #555; }
+  #saved { color: #4da533; font-size: 13px; opacity: 0; transition: opacity .2s; }
+  #saved.on { opacity: 1; }
+  table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 13px; }
+  table td { padding: 6px 8px; border-top: 1px solid rgba(0,0,0,.1); vertical-align: top; }
+  td.v { white-space: nowrap; width: 1%; }
+  .pill {
+    display: inline-block; padding: 2px 5px; border-radius: 6px;
+    font-size: 12px; line-height: 1.2; color: #fff; white-space: nowrap;
+  }
+  .pill.keep { background: #4da533; }
+  .pill.drop { background: #c98405; }
+  .pill.off { background: #cfcfcf; }
+  td.why { color: #8a8a8a; }
+  ul.rules { margin: 10px 0 0; padding-left: 20px; color: #6f6f6f; font-size: 13px; }
+  ul.rules li { margin: 3px 0; }
+  code {
+    background: #f0f2f3; padding: 1px 5px; border-radius: 4px;
+    font: 12px/1.4 ui-monospace, Menlo, monospace;
+  }
+</style>
+</head>
+<body>
+
+<h1>Webtrh filtr</h1>
+<p class="lead">Uklízí dvě místa na webtrh.cz: tabulku Nový obsah a chat na úvodní stránce. Nic se nemaže. Co filtr schová, vrátíš jedním kliknutím i s poznámkou, proč to zmizelo.</p>
+
+<div class="box">
+  <h2>Výpis Nový obsah</h2>
+  <label class="row"><input type="checkbox" id="hideDomainSales"> Skrýt inzeráty na holé domény
+    <span class="hint">Prodej webu, e-shopu nebo projektu projde dál, i když má adresu v titulku.</span></label>
+  <label class="row"><input type="checkbox" id="hideMediumConfidence"> Brát i slabší shody
+    <span class="hint">Titulek je jenom název domény, třeba „izolacie.sk“, nebo o ní mluví a nic dalšího nenabízí.</span></label>
+  <label class="row"><input type="checkbox" id="dedupe"> Skrýt zopakované inzeráty
+    <span class="hint">Stejný odkaz se ve výpisu občas objeví dvakrát.</span></label>
+
+  <div class="sub">Typy obsahu</div>
+  <p class="lead">Odškrtni, co číst nechceš. Jde o sloupec Typ.</p>
+  <div id="types"></div>
+
+  <div class="sub">Načítání</div>
+  <label class="row"><input type="checkbox" id="autoload"> Samo mačká Načíst další, dokud není na obrazovce dost toho, co tě zajímá</label>
+  <div class="num">
+    <label>Kolik položek chci vidět<br><input type="number" id="target" min="1" max="200"></label>
+    <label>Strop načtených stránek<br><input type="number" id="maxLoads" min="1" max="30"></label>
+  </div>
+</div>
+
+<div class="box">
+  <h2>Chat</h2>
+  <label class="row"><input type="checkbox" id="chatHideLinks"> Skrýt zprávy s odkazem
+    <span class="hint">Počítá se i holá adresa webu a e-mail. Odkaz hozený do chatu bývá inzerát, na který nikdo neodpověděl.</span></label>
+  <label class="row"><input type="checkbox" id="chatHideDomainTalk"> Skrýt handlování s doménami
+    <span class="hint">Kdo sám nabízí nebo shání: prodám, koupím, v portfoliu máme, cena k jednání.</span></label>
+  <label class="row"><input type="checkbox" id="chatHideDomainChat"> Skrýt i řeči o doménách
+    <span class="hint">Sebere i ty, kdo si na doménový spam stěžují. Většinou je škoda je umlčet.</span></label>
+  <label class="row"><input type="checkbox" id="chatHideUnrated"> Skrýt lidi bez hodnocení
+    <span class="hint">Účet, kterému zatím nikdo nic nepotvrdil.</span></label>
+
+  <div class="sub">Ztlumení autoři</div>
+  <p class="lead">Jméno nebo adresa profilu, jedno na řádek. V chatu přibude u každé zprávy tlačítko ztlumit, které sem autora doplní samo.</p>
+  <textarea id="chatMuteAuthors" rows="4" placeholder="Jan Novák&#10;/profil/nejaky-prodejce/"></textarea>
+</div>
+
+<div class="box">
+  <h2>Slova</h2>
+  <p class="lead">Platí na obojí, na výpis i na chat.</p>
+
+  <p class="lead">Jedno na řádek. Hledá se kus textu, na diakritice ani na velikosti písmen nezáleží. Řádek mezi lomítky se bere jako regulární výraz, takže <code>/^\[.*\]/</code> sebere každý titulek, co začíná křikem v hranaté závorce, třeba <code>[PRODÁM AUTOMATICKÝ E-SHOP]</code>. Vzor, kterému nejde rozumět, se přeskočí.</p>
+
+  <div class="sub">Sledovaná slova</div>
+  <p class="lead">Co je obsahuje, projde vždycky. Přebijí i všechno ostatní.</p>
+  <textarea id="pin" rows="4" placeholder="seo&#10;wordpress&#10;/webhosting|hosting/"></textarea>
+
+  <div class="sub">Ztlumená slova</div>
+  <p class="lead">Co je obsahuje, zmizí.</p>
+  <textarea id="mute" rows="5" placeholder="kryptomeny&#10;/^\[.*\]/&#10;/ready.?made|automatick\w* (e-?shop|eshop)/"></textarea>
+
+  <label class="row" style="margin-top:14px"><input type="checkbox" id="onlyPinned"> Ukázat jenom to, co má sledované slovo
+    <span class="hint">Tvrdý režim. Bez shody nezůstane nic.</span></label>
+</div>
+
+<div class="actions">
+  <button id="save">Uložit</button>
+  <button class="plain" id="reset">Výchozí</button>
+  <span id="saved">uloženo</span>
+</div>
+
+<div class="box">
+  <h2>Na zkoušku</h2>
+  <p class="lead">Vlož titulky, odkazy nebo věty z chatu, jednu na řádek. Uvidíš, co by s nimi filtr provedl, ještě než nastavení uložíš.</p>
+  <textarea id="probe" rows="5" placeholder="Prodám doménu pro autopůjčovnu Praha&#10;Prodej zavedeného webu na personalizované dárky&#10;softver.cz za 100k koupím hned top nabídka"></textarea>
+  <table><tbody id="probeOut"></tbody></table>
+</div>
+
+<div class="box">
+  <h2>Podle čeho se to rozhoduje</h2>
+  <p class="lead">Inzeráty si webtrh sám třídí do dvou kategorií, prodej domén a prodej webů. Proti tomu je klasifikátor změřený: k 11. 9. 2026 zachytí 196 z 202 domén, ani jednou přitom nesáhne na 32 prodejů webu a na 139 poptávek s nabídkami práce. Přepočítat to umí <code>node eval.js</code> ve složce rozšíření.</p>
+  <div class="sub">Pravidla výpisu</div>
+  <ul class="rules" id="ruleList"></ul>
+  <div class="sub">Pravidla chatu</div>
+  <p class="lead">Chat stojí na 40 zprávách z úvodní stránky, oštítkovaných ručně. Ve výchozím nastavení souhlasí všech 40. Rozhoduje mluvnická osoba. Kdo nabízí, píše o sobě („prodám“, „v portfoliu máme“). Kdo si stěžuje, mluví o někom jiném („ten spam prodeje domén za 100K“), a toho filtr nechá být.</p>
+  <ul class="rules" id="chatRuleList"></ul>
+</div>
+
+<script src="classify.js"></script>
+<script src="options.js"></script>
+</body>
+</html>

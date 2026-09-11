@@ -1,0 +1,127 @@
+/* Webtrh filtr — vzhled si půjčuje od webtrhu, ať to na stránce nekřičí.
+ *
+ * Odkazy #008fab / hover #1abbda, 13px, Roboto se dědí ze stránky.
+ * Přepínače používají rovnou jejich komponentu .checkbox-wrapper,
+ * takže tady k nim nic není.
+ */
+
+.wtf-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0 8px;
+  font-size: 13px;
+  line-height: 1.4;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.wtf-bar .wtf-side {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  align-items: center;
+}
+
+.wtf-count { color: #8a8a8a; }
+
+.wtf-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: #008fab;
+  cursor: pointer;
+  text-decoration: none;
+}
+.wtf-link:hover,
+.wtf-link:focus { color: #1abbda; outline: 0; text-decoration: none; }
+.wtf-link[disabled] { color: #b5b5b5; cursor: default; }
+
+/* Přepínač vypadá jako jejich, ale je celý náš: jejich komponenta visí na
+ * jejich jQuery, které click ruší přes preventDefault(). */
+.wtf-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  line-height: 1.4;
+  cursor: pointer;
+  user-select: none;
+}
+.wtf-switch input {
+  position: absolute;
+  width: 1px; height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+.wtf-box {
+  flex: none;
+  position: relative;
+  width: 17px; height: 17px;
+  box-sizing: border-box;
+  border: 1px solid #afafaf;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.05);
+  transition: background-color ease .15s, border-color ease .15s;
+}
+.wtf-box:after {
+  content: '';
+  position: absolute;
+  left: 5px; top: 2px;
+  width: 4px; height: 8px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  opacity: 0;
+}
+.wtf-switch input:checked + .wtf-box {
+  border-color: #008fab;
+  background-color: #008fab;
+}
+.wtf-switch input:checked + .wtf-box:after { opacity: 1; }
+.wtf-switch:hover .wtf-box { border-color: #8c8c8c; }
+.wtf-switch input:focus-visible + .wtf-box {
+  outline: 2px solid #1abbda;
+  outline-offset: 1px;
+}
+
+/* Skryté se nemaže, jen zmizí. Tlačítkem se vrátí i s důvodem. */
+.wtf-drop { display: none; }
+body.wtf-show-feed .wtf-drop { display: table-row; opacity: .45; }
+body.wtf-show-chat .homepage-chat__message.wtf-drop { display: block; opacity: .45; }
+
+/* Štítek s důvodem: stejný tvar jako jejich .status, jen zašedlý. */
+.wtf-why {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 5px;
+  border-radius: 6px;
+  background-color: #ededed;
+  color: #7c7c7c;
+  font-size: 12px;
+  line-height: 1.2;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+body:not(.wtf-show-feed) tr .wtf-why,
+body:not(.wtf-show-chat) .homepage-chat__message .wtf-why { display: none; }
+
+/* Ztlumit autora: v hlavičce zprávy, vidět až po najetí myší. */
+.wtf-mute {
+  margin-left: 6px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 12px;
+  color: #b5b5b5;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity ease .15s;
+}
+.homepage-chat__message:hover .wtf-mute,
+.wtf-mute:focus { opacity: 1; }
+.wtf-mute:hover { color: #c01616; }
