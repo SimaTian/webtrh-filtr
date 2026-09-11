@@ -2,18 +2,18 @@
 
 Rozšíření do prohlížeče, které uklízí dvě místa na [webtrh.cz](https://webtrh.cz/):
 
-1. tabulku **Nový obsah** (vyhodí inzeráty na holé domény a dotáhne další stránky,
-   dokud není na obrazovce dost toho, co stojí za přečtení)
+1. tabulku **Nový obsah** (vyhodí inzeráty na holé domény a načte další položky, aby tabulka nebyla zbytečně prázdná)
 2. **Webtrh chat** (vyhodí vhozené odkazy a handlování s doménami)
 
-Nic se nemaže. Skryté řádky i zprávy zůstávají ve stránce a tlačítkem se vrátí,
-každý s poznámkou, které pravidlo ho schovalo.
+V obou případech je možné filtr rozšířit přes regexy. 
+
+Nic se nemaže. Vše zůstane na místě a je možné si skryté položky prohlédnout.
 
 Lišta si půjčuje vzhled od webtrhu: jejich odkazy, jejich přepínače, jejich
-odstíny. Na stránce nemá nic křičet.
+odstíny. Snaha je, aby přirozeně zapadla do layoutu a nerušila.
 
 > Nezávislý nástroj. S provozovatelem webtrh.cz nemá nic společného a nikdo ho
-> neschvaloval. Filtruje jenom to, co si zobrazíš ve vlastním prohlížeči.
+> neschvaloval. Je to čistě moje reakce na doménový spam.
 
 ## Instalace
 
@@ -24,82 +24,26 @@ rozbalené* > vybrat tuhle složku.
 vybrat `manifest.json`. (Dočasný = zmizí po restartu. Natrvalo je potřeba podpis
 z addons.mozilla.org.)
 
+- addon pro chrome je v review. Pokud bude zájem, pokusím se i o Mozillu, ale tam jsem to ještě nikdy nezkoušel.
+
 ## Co filtr umí
 
-### Výpis Nový obsah
+### Tabulka Nový obsah
 
-| | |
-|---|---|
-| **Skrýt inzeráty na holé domény** | Hlavní věc. Prodej webu, e-shopu nebo projektu projde dál, i když má adresu v titulku. |
-| **Brát i slabší shody** | Titulek je jenom název domény, nebo o ní mluví a nic dalšího nenabízí. |
-| **Typy obsahu** | Prodej / Poptávka / Nabídka / Práce / Diskuse / Článek. |
-| **Načítání** | Samo mačká *Načíst další*, dokud není `target` položek. Nepřihlášenému webtrh další stránku nepošle, filtr to pozná a přestane. |
-| **Duplicity** | Stejný inzerát podruhé ve výpisu zmizí. |
+ - Skryje všechny inzeráty na prodej domén
+ - Tento filtr je možno rozšířit či omezit pomocí regexů
+ - Skryje duplicitní inzeráty (když se někomu třese ruka a odpálí tu samou inzerci vícekrát)
+ - Možnost filtrovat podle typu
 
 ### Chat
 
-| | |
-|---|---|
-| **Skrýt zprávy s odkazem** | Zapnuté. Počítá se i holá adresa webu a e-mail. |
-| **Skrýt handlování s doménami** | Zapnuté. Kdo sám nabízí nebo shání. |
-| **Skrýt i řeči o doménách** | Vypnuté. Sebere i ty, kdo si na spam stěžují. |
-| **Skrýt lidi bez hodnocení** | Účet, kterému zatím nikdo nic nepotvrdil. |
-| **Ztlumení autoři** | U každé zprávy přibude tlačítko *ztlumit*, které autora doplní do seznamu. |
+- skryje všechny zprávy obsahující aktivní odkaz
+- skryje všechny nabídky týkající se domén
+- banlist na autory s možností banu jedním klikem (skryje veškeré jejich správy)
+- sdílí allow list a banlist na klíčová slova (a regexy) s tabulkou Nového Obsahu
 
-Kromě přepínačů výš jdou nastavit vlastní slova: sledovaná projdou vždycky,
-ztlumená zmizí. Platí na výpis i na chat. Hledá se kus textu, bez ohledu na
-diakritiku a velikost písmen. Řádek mezi lomítky je regulární výraz:
 
-```
-/^\[.*\]/                                 křik v hranaté závorce: [PRODÁM AUTOMATICKÝ E-SHOP]
-/ready.?made|automatick\w* (e-?shop|eshop)/  ready-made a automatické e-shopy
-/prod[áa]m .{0,20}domén/                   prodám něco domén
-```
-
-Diakritika ve vzoru je v pořádku, sundá se stejně jako v hledaném textu. Když
-takovému zápisu nejde rozumět, tiše se přeskočí, takže překlep filtr nerozbije.
-
-## Jak to rozhoduje
-
-Sada pojmenovaných pravidel v `classify.js`. Žádná síť, žádný model.
-
-**U inzerátů** rozhoduje pořadí slov v titulku, protože co je zmíněné první, to se
-prodává. *„Prémiová doména … pro SaaS“* je doména, *„E-shop se značkou … + 3×
-prémiová doména“* je e-shop. Zmínka o provozu (tržby, výdělek, návštěvnost, marže,
-Shopify) přebíjí všechno, to se neprodává doména.
-
-**V chatu** rozhoduje mluvnická osoba. Kdo nabízí, píše o sobě („prodám“,
-„v portfoliu máme“). Kdo si stěžuje, mluví o někom jiném („ten spam prodeje domén
-za 100K“). Ten druhý je na chatu to lepší a filtr ho nechá být.
-
-### Změřeno
-
-Inzeráty si webtrh sám třídí do `/prodeje/prodej-domen/` a `/prodeje/prodej-webu/`.
-Chat je 40 zpráv z úvodní stránky, oštítkovaných ručně. Stav k 11. 9. 2026:
-
-```
-prodej domén   : 196/202 zachyceno
-prodej webů    :  32/32  ponecháno   ← ani jeden prodej webu omylem skrytý
-poptávky/práce :   0/139 dotčeno
-chat, výchozí  :  40/40  sedí
-chat, handlování: 40/40  sedí
-chat, adresy   :  40/40  sedí
-```
-
-Šest domén, co projde, jsou titulky, ze kterých to nepozná ani člověk
-(*„Digitální monopol DB96/96DB, kompletní zrcadlový ekosystém“*).
-
-Přepočítat:
-
-```sh
-python3 refresh-fixtures.py   # stáhne aktuální rozdělení inzerátů z webtrhu
-node eval.js                  # exit 1, když se skryje prodej webu nebo špatná zpráva
-```
-
-V nastavení je navíc pole **Na zkoušku**: vložíš řádky a vidíš verdikt pro výpis
-i pro chat, ještě než něco uložíš.
-
-## Soubory
+### Soubory
 
 ```
 manifest.json         MV3, bez background scriptu, jediné právo je storage
@@ -119,20 +63,12 @@ refresh-fixtures.py   aktualizace fixtures.json
 * Ve výpisu filtruje podle titulku a URL. Cenu ani autora řádek tabulky
   neobsahuje, takže „skrýt pod 5 000 Kč“ by znamenalo stahovat každý inzerát.
   V chatu autor k dispozici je, proto je ztlumení autorů jen tam.
-* Dotahování jede přes vlastní tlačítko webtrhu, takže respektuje přihlášení
+* Načítání dalších položek využívá vlastní tlačítko webtrhu, takže rozšíření respektuje přihlášení
   i limity webu.
-* Chatových zpráv je na měření málo. Když narazíš na zprávu, kterou filtr
-  posoudí špatně, přidej ji do `chat-fixtures.json` se štítkem a spusť `node eval.js`.
-  **Jména autorů, e-maily a adresy webů nahraď zástupnými** (`autor-01`,
-  `jmeno@example.com`, `example.cz`), jako je tam mají ostatní. Měřená pravidla čtou
-  tvar textu, takže zástupná jména na výsledku nic nezmění. Ztlumení autoři na
-  jméně stojí, ale ti se v měření nepoužívají. Chat psali skuteční lidé
-  a do repozitáře jejich kontakty nepatří.
 
 ## Licence
 
-[0BSD](LICENSE). Dělej si s tím, co chceš. Nemusíš uvádět zdroj, nemusíš se ptát,
-nemusíš nic zveřejňovat. Záruka žádná.
+[0BSD](LICENSE). Mouchy snězte si mě. Rozšíření je nabízeno bez jakéhokoliv omezení a bez jakékoliv záruky. Kód je poctivý AI slop, je ho dohromady jen pár set řádek. Kdo mu nevěří, ať si ho přečte, nebo ho předhodí svému agentovi.
 
 ## Snímky
 
